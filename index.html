@@ -3,399 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TikTok Video Downloader</title>
+    <title>ZyroX Ultimate Hook Gen v12.5</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .container {
-            background: white;
-            border-radius: 20px;
-            padding: 3rem;
-            max-width: 600px;
-            width: 100%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .logo {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        h1 {
-            color: #333;
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .subtitle {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .download-section {
-            margin: 2rem 0;
-        }
-
-        .input-group {
-            position: relative;
-            margin-bottom: 1.5rem;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 1rem 1.2rem;
-            font-size: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            transition: all 0.3s;
-            outline: none;
-        }
-
-        .input-group input:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .input-group label {
-            position: absolute;
-            left: 1.2rem;
-            top: 1rem;
-            color: #999;
-            transition: all 0.3s;
-            pointer-events: none;
-            background: white;
-            padding: 0 0.3rem;
-        }
-
-        .input-group input:focus + label,
-        .input-group input:not(:placeholder-shown) + label {
-            top: -0.6rem;
-            font-size: 0.85rem;
-            color: #667eea;
-        }
-
-        .download-btn {
-            width: 100%;
-            padding: 1.2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-        }
-
-        .download-btn:active {
-            transform: translateY(0);
-        }
-
-        .download-btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            box-shadow: none;
-        }
-
-        .loader {
-            display: none;
-            text-align: center;
-            margin: 2rem 0;
-        }
-
-        .loader.active {
-            display: block;
-        }
-
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .result {
-            display: none;
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: #f8f9fa;
-            border-radius: 12px;
-            border: 2px solid #e0e0e0;
-        }
-
-        .result.active {
-            display: block;
-        }
-
-        .video-info {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            align-items: center;
-        }
-
-        .video-thumbnail {
-            width: 120px;
-            height: 120px;
-            background: #ddd;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-        }
-
-        .video-details h3 {
-            color: #333;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .video-details p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .download-options {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .option-btn {
-            flex: 1;
-            padding: 0.8rem;
-            background: white;
-            border: 2px solid #667eea;
-            color: #667eea;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
-            min-width: 150px;
-        }
-
-        .option-btn:hover {
-            background: #667eea;
-            color: white;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .feature {
-            text-align: center;
-            padding: 1rem;
-        }
-
-        .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .feature h3 {
-            color: #333;
-            font-size: 0.9rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .feature p {
-            color: #666;
-            font-size: 0.8rem;
-        }
-
-        .warning {
-            background: #fff3cd;
-            border: 1px solid #ffc107;
-            border-radius: 8px;
-            padding: 1rem;
-            margin-top: 2rem;
-            color: #856404;
-            font-size: 0.85rem;
-            text-align: center;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 2rem 1.5rem;
-            }
-
-            h1 {
-                font-size: 1.5rem;
-            }
-
-            .video-info {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .download-options {
-                flex-direction: column;
-            }
-
-            .option-btn {
-                min-width: 100%;
-            }
-        }
+        :root { --neon: #00ff41; --bg: #0d0d0d; --card: #1a1a1a; --pink: #ff00ff; }
+        body { background: var(--bg); color: #ccc; font-family: 'Consolas', monospace; padding: 10px; }
+        .container { background: var(--card); border: 1px solid #333; padding: 20px; border-radius: 12px; max-width: 900px; margin: auto; box-shadow: 0 0 25px rgba(0,255,65,0.1); }
+        h2 { color: var(--neon); text-align: center; text-transform: uppercase; font-size: 1.1rem; border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 20px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+        .full { grid-column: span 3; background: #222; padding: 12px; border-radius: 6px; border-left: 4px solid var(--pink); }
+        label { display: block; font-size: 10px; color: var(--neon); margin-bottom: 4px; font-weight: bold; text-transform: uppercase; }
+        input, select { width: 100%; padding: 10px; background: #252525; border: 1px solid #444; color: #fff; border-radius: 4px; outline: none; box-sizing: border-box; }
+        button#genBtn { width: 100%; padding: 15px; background: var(--neon); color: #000; border: none; cursor: pointer; font-weight: 900; border-radius: 6px; margin-top: 20px; text-transform: uppercase; transition: 0.3s; }
+        button#genBtn:hover { background: #00cc33; box-shadow: 0 0 15px rgba(0,255,65,0.4); }
+        .output-box { margin-top: 20px; display: none; }
+        .box-container { position: relative; margin-bottom: 20px; }
+        pre { background: #000; padding: 15px; border-radius: 6px; border: 1px solid #333; color: #00ff41; overflow-x: auto; font-size: 11px; line-height: 1.5; border-left: 3px solid var(--neon); margin: 0; }
+        .copy-btn { position: absolute; top: 8px; right: 8px; background: #333; color: #fff; padding: 5px 10px; font-size: 10px; border: 1px solid #555; cursor: pointer; border-radius: 4px; z-index: 10; transition: 0.2s; }
+        .copy-btn:hover { background: var(--pink); color: #fff; }
+        .tag { color: var(--pink); font-size: 11px; font-weight: bold; margin-bottom: 5px; display: block; text-transform: uppercase; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">📱</div>
-            <h1>TikTok Downloader</h1>
-            <p class="subtitle">Download TikTok videos without watermark</p>
+
+<div class="container">
+    <h2>ZyroX Master Hook Gen (Final Fix)</h2>
+    <div class="grid">
+        <div class="full">
+            <label>Hook Type (Execution Mode)</label>
+            <select id="hookType" onchange="onUpdateUI()">
+                <option value="WithUpdate">With Update (Continuous Call)</option>
+                <option value="WithoutUpdate">Without Update (Direct Method Hook)</option>
+            </select>
         </div>
 
-        <div class="download-section">
-            <div class="input-group">
-                <input type="text" id="videoUrl" placeholder=" " required>
-                <label>Paste TikTok video link here</label>
-            </div>
-
-            <button class="download-btn" id="downloadBtn">
-                Download Video
-            </button>
+        <div class="full">
+            <label>Data Type</label>
+            <select id="pType" onchange="onTypeChange()">
+                <option value="int">int</option>
+                <option value="float">float</option>
+                <option value="long">long</option>
+                <option value="bool">bool</option>
+            </select>
         </div>
 
-        <div class="loader" id="loader">
-            <div class="spinner"></div>
-            <p>Processing your video...</p>
+        <div class="full">
+            <label>Menu Mode</label>
+            <select id="hookMode" onchange="onModeChange()"></select>
         </div>
 
-        <div class="result" id="result">
-            <div class="video-info">
-                <div class="video-thumbnail">🎬</div>
-                <div class="video-details">
-                    <h3 id="videoTitle">Video Title</h3>
-                    <p id="videoAuthor">@username</p>
-                    <p id="videoStats">👁️ 1.2M views • ❤️ 100K likes</p>
-                </div>
-            </div>
-
-            <div class="download-options">
-                <button class="option-btn" onclick="downloadVideo('no-watermark')">
-                    📥 No Watermark
-                </button>
-                <button class="option-btn" onclick="downloadVideo('with-watermark')">
-                    📥 With Watermark
-                </button>
-                <button class="option-btn" onclick="downloadVideo('audio')">
-                    🎵 Audio Only
-                </button>
-            </div>
+        <div class="full">
+            <label>Hook Name</label>
+            <input type="text" id="hName" placeholder="e.g. SetCoins" value="Hh">
         </div>
 
-        <div class="features">
-            <div class="feature">
-                <div class="feature-icon">✨</div>
-                <h3>No Watermark</h3>
-                <p>Download clean videos</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">⚡</div>
-                <h3>Fast Speed</h3>
-                <p>Quick downloads</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">🆓</div>
-                <h3>Free Forever</h3>
-                <p>No hidden charges</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">📱</div>
-                <h3>All Devices</h3>
-                <p>Mobile & Desktop</p>
+        <div><label>Namespace</label><input type="text" id="ns" placeholder="Optional"></div>
+        <div><label>Class Name</label><input type="text" id="cls" placeholder="PlayerController"></div>
+        <div><label>Method Name</label><input type="text" id="meth" placeholder="SetCoins"></div>
+        
+        <div><label>Param Count</label><input type="number" id="pCount" value="1" onchange="onUpdateUI()"></div>
+        <div id="hookPointDiv"><label>Hook Point (Update)</label><input type="text" id="upm" value="Update"></div>
+        <div><label>Menu Case #</label><input type="number" id="cNum" value="1"></div>
+
+        <div id="minMaxBox" style="display:none; grid-column: span 3;">
+            <div style="display:flex; gap:10px;">
+                <div style="flex:1;"><label>Min</label><input type="number" id="minVal" value="0"></div>
+                <div style="flex:1;"><label>Max</label><input type="number" id="maxVal" value="100"></div>
             </div>
         </div>
 
-        <div class="warning">
-            ⚠️ <strong>Disclaimer:</strong> This tool is for educational purposes only. Always respect content creators' rights and TikTok's terms of service. Download videos only if you have permission from the creator.
+        <div id="injectBox" class="full">
+            <label>Inject Value</label>
+            <div id="injectInputArea"></div>
         </div>
     </div>
+    
+    <button id="genBtn" onclick="generate()">Generate Ultimate Code</button>
 
-    <script>
-        const videoUrlInput = document.getElementById('videoUrl');
-        const downloadBtn = document.getElementById('downloadBtn');
-        const loader = document.getElementById('loader');
-        const result = document.getElementById('result');
+    <div class="output-box" id="output-container">
+        <div class="box-container"><span class="tag">1. Hook Logic</span><button class="copy-btn" onclick="copy('outHook')">COPY</button><pre id="outHook"></pre></div>
+        <div class="box-container"><span class="tag">2. Menu String</span><button class="copy-btn" onclick="copy('outObf')">COPY</button><pre id="outObf"></pre></div>
+        <div class="box-container"><span class="tag">3. Menu Case</span><button class="copy-btn" onclick="copy('outCase')">COPY</button><pre id="outCase"></pre></div>
+    </div>
+</div>
 
-        downloadBtn.addEventListener('click', function() {
-            const url = videoUrlInput.value.trim();
-            
-            if (!url) {
-                alert('Please paste a TikTok video link!');
-                return;
-            }
+<script>
+function onTypeChange() {
+    const type = document.getElementById('pType').value;
+    const modeSelect = document.getElementById('hookMode');
+    modeSelect.innerHTML = (type === 'bool') ? `<option value="Toggle">Toggle</option><option value="CheckBox">CheckBox</option>` : `<option value="Toggle">Toggle</option><option value="CheckBox">CheckBox</option><option value="SeekBar">SeekBar</option><option value="InputValue">InputValue</option>`;
+    const area = document.getElementById('injectInputArea');
+    area.innerHTML = (type === 'bool') ? `<select id="defVal"><option value="true">true</option><option value="false">false</option></select>` : `<input type="text" id="defVal" value="999">`;
+    onModeChange();
+}
 
-            if (!url.includes('tiktok.com')) {
-                alert('Please enter a valid TikTok video link!');
-                return;
-            }
+function onModeChange() {
+    const mode = document.getElementById('hookMode').value;
+    document.getElementById('minMaxBox').style.display = (mode === 'SeekBar') ? 'block' : 'none';
+    document.getElementById('injectBox').style.display = (mode === 'Toggle' || mode === 'CheckBox') ? 'block' : 'none';
+}
 
-            // Show loader
-            loader.classList.add('active');
-            result.classList.remove('active');
-            downloadBtn.disabled = true;
+function onUpdateUI() {
+    const type = document.getElementById('hookType').value;
+    document.getElementById('hookPointDiv').style.visibility = (type === "WithUpdate") ? "visible" : "hidden";
+}
 
-            // Simulate API call (this is just a demo)
-            setTimeout(() => {
-                loader.classList.remove('active');
-                result.classList.add('active');
-                downloadBtn.disabled = false;
+onTypeChange();
+onUpdateUI();
 
-                // Populate demo data
-                document.getElementById('videoTitle').textContent = 'Amazing TikTok Video';
-                document.getElementById('videoAuthor').textContent = '@creator_username';
-                document.getElementById('videoStats').textContent = '👁️ 1.2M views • ❤️ 100K likes';
-            }, 2000);
-        });
+function generate() {
+    const h = document.getElementById('hName').value || "Hh";
+    const cls = document.getElementById('cls').value || "Class";
+    const meth = document.getElementById('meth').value || "Method";
+    const ns = document.getElementById('ns').value || "";
+    const pc = parseInt(document.getElementById('pCount').value);
+    const upm = document.getElementById('upm').value || "Update";
+    const cn = document.getElementById('cNum').value || "1";
+    const type = document.getElementById('pType').value;
+    const mode = document.getElementById('hookMode').value;
+    const hType = document.getElementById('hookType').value;
+    const injectVal = document.getElementById('defVal').value;
 
-        function downloadVideo(type) {
-            alert(`⚠️ IMPORTANT NOTICE:\n\nThis is a DEMO interface only. To actually download videos:\n\n1. You need a backend server with TikTok API access\n2. You must comply with TikTok's Terms of Service\n3. Always get permission from content creators\n4. Respect copyright laws\n\nThis demo shows the UI/UX only. Real functionality requires:\n- Backend API (Node.js/Python)\n- TikTok scraping service\n- Video processing libraries\n- Legal compliance\n\nDownloading videos without permission may violate copyright laws.`);
-        }
+    const isBoolMode = (mode === "Toggle" || mode === "CheckBox");
+    let varName = isBoolMode ? `Is${h}` : `${h}_Value`;
+    let varType = isBoolMode ? "bool" : type;
+    let finalVal = (type === 'float' && !isNaN(injectVal) && !injectVal.includes('.')) ? injectVal + ".0f" : injectVal;
 
-        // Clear result when input changes
-        videoUrlInput.addEventListener('input', function() {
-            result.classList.remove('active');
-        });
-    </script>
+    let hookCode = "";
+    if (hType === "WithUpdate") {
+        let hookBody = isBoolMode ? `if (${varName}) { ${h}_ptr(instance, ${finalVal}); }` : (mode === "SeekBar" ? `if (${varName} > 0) { ${h}_ptr(instance, ${varName}); }` : `${h}_ptr(instance, ${varName});`);
+        hookCode = `${varType} ${varName} = ${isBoolMode ? 'false' : '0'};\n\nvoid (*${h}_ptr)(void *instance, ${type} value);\nvoid (*orig_${cls}up)(void *instance);\n\nvoid new_${cls}up(void *instance) {\n    if (instance != NULL) {\n        ${hookBody}\n    }\n    return orig_${cls}up(instance);\n}\n\n// Init:\n${h}_ptr = (void(*)(void*, ${type}))Il2CppGetMethodOffset("Assembly-CSharp.dll", "${ns}", "${cls}", "${meth}", ${pc});\nDobbyHook(Il2CppGetMethodOffset("Assembly-CSharp.dll", "${ns}", "${cls}", "${upm}", 0), (void*)new_${cls}up, (void**)&orig_${cls}up);`;
+    } else {
+        let paramStr = (pc > 0) ? `, ${type} value` : ``;
+        let callParams = (pc > 0) ? `instance, ${isBoolMode ? finalVal : varName}` : `instance`;
+        // FIXED: varType instead of static bool
+        hookCode = `${varType} ${varName} = ${isBoolMode ? 'false' : '0'};\n\nvoid (*old_${h})(void *instance${paramStr});\nvoid hook_${h}(void *instance${paramStr}) {\n    if (instance != NULL) {\n        if (${isBoolMode ? varName : varName + ' != 0'}) {\n            old_${h}(${callParams});\n            return;\n        }\n    }\n    return old_${h}(instance${pc > 0 ? ', value' : ''});\n}\n\n// Init:\nDobbyHook(Il2CppGetMethodOffset("Assembly-CSharp.dll", "${ns}", "${cls}", "${meth}", ${pc}), (void*)hook_${h}, (void**)&old_${h});`;
+    }
+
+    let obfStr = `OBFUSCATE("${cn}_${mode}_${h}${mode==='SeekBar'?'_'+document.getElementById('minVal').value+'_'+document.getElementById('maxVal').value:''}"),`;
+    const caseCode = `case ${cn}:\n    ${varName} = ${isBoolMode ? 'boolean' : 'value'};\n    break;`;
+
+    document.getElementById('outHook').textContent = hookCode;
+    document.getElementById('outObf').textContent = obfStr;
+    document.getElementById('outCase').textContent = caseCode;
+    document.getElementById('output-container').style.display = 'block';
+}
+
+function copy(id) {
+    const el = document.getElementById(id);
+    navigator.clipboard.writeText(el.textContent).then(() => {
+        const btn = el.previousElementSibling;
+        btn.innerText = "COPIED!";
+        setTimeout(() => { btn.innerText = "COPY"; }, 1500);
+    });
+}
+</script>
 </body>
 </html>
