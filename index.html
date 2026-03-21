@@ -26,13 +26,13 @@
 <body>
 
 <div class="container">
-    <h2>ZyroX Master Hook Gen (Final Fix)</h2>
+    <h2>ZyroX Master Hook Gen</h2>
     <div class="grid">
         <div class="full">
             <label>Hook Type (Execution Mode)</label>
             <select id="hookType" onchange="onUpdateUI()">
-                <option value="WithUpdate">With Update (Continuous Call)</option>
-                <option value="WithoutUpdate">Without Update (Direct Method Hook)</option>
+                <option value="WithUpdate">With Update</option>
+                <option value="WithoutUpdate">Without Update</option>
             </select>
         </div>
 
@@ -111,7 +111,7 @@ onTypeChange();
 onUpdateUI();
 
 function generate() {
-    const h = document.getElementById('hName').value || "Hh";
+    
     const cls = document.getElementById('cls').value || "Class";
     const meth = document.getElementById('meth').value || "Method";
     const ns = document.getElementById('ns').value || "";
