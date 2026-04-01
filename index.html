@@ -9,123 +9,62 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         
-        body { background-color: #000; color: #fff; display: flex; justify-content: center; min-height: 100vh; overflow-x: hidden; }
+        /* BG Color Fix: Pure Black */
+        body { background-color: #000000 !important; color: #ffffff; display: flex; justify-content: center; min-height: 100vh; overflow-x: hidden; }
 
-        .container { 
-            width: 100%; max-width: 430px; padding: 15px; 
-            display: flex; flex-direction: column; min-height: 100vh; 
-        }
-
+        .container { width: 100%; max-width: 430px; padding: 15px; display: flex; flex-direction: column; min-height: 100vh; }
         .content-wrap { flex: 1; }
 
-        /* --- HEADER --- */
-        .header-nav { 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 10px 5px; margin-bottom: 15px;
-        }
+        .header-nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 5px; margin-bottom: 15px; }
         .header-nav h1 { font-size: 1.6rem; font-weight: 800; color: #0a84ff; letter-spacing: -0.5px; }
-        .menu-btn { font-size: 1.2rem; color: #fff; cursor: pointer; padding: 8px; transition: 0.2s; }
+        .menu-btn { font-size: 1.2rem; color: #fff; cursor: pointer; padding: 8px; }
 
-        /* --- BLUE SEARCH BAR --- */
         .search-box { position: relative; margin-bottom: 25px; padding: 0 5px; }
         .search-box i { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: #0a84ff; font-size: 0.85rem; }
         .search-box input { 
             width: 100%; background: #111; border: 1px solid #1c1c1e; 
-            padding: 10px 15px 10px 40px; border-radius: 12px; color: #fff; 
-            font-size: 0.85rem; outline: none; transition: 0.3s;
+            padding: 12px 15px 12px 40px; border-radius: 14px; color: #fff; 
+            font-size: 0.9rem; outline: none; transition: 0.3s;
         }
-        .search-box input:focus { border-color: #0a84ff; background: #000; box-shadow: 0 0 8px rgba(10, 132, 255, 0.2); }
+        .search-box input:focus { border-color: #0a84ff; background: #080808; box-shadow: 0 0 15px rgba(10, 132, 255, 0.15); }
 
-        /* --- APP LIST --- */
         .app-list { display: flex; flex-direction: column; gap: 28px; padding-bottom: 30px; }
-        .app-card { text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 10px; }
-        .thumb { width: 100%; aspect-ratio: 16/9; border-radius: 18px; overflow: hidden; border: 1px solid #1c1c1e; background: #0a0a0a; }
+        .app-card { text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 10px; transition: 0.2s; }
+        .app-card:active { transform: scale(0.97); }
+
+        .thumb { width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; border: 1px solid #1c1c1e; background: #0a0a0a; }
         .thumb img { width: 100%; height: 100%; object-fit: cover; }
         .info { padding: 0 5px; }
-        .info h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 3px; }
-        .info p { font-size: 0.8rem; color: #8e8e93; }
+        .info h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 4px; }
+        .info p { font-size: 0.8rem; color: #8e8e93; font-weight: 500; }
 
-        /* --- FOOTER --- */
-        footer {
-            padding: 10px 0 25px;
-            text-align: center;
-            border-top: 1px solid #1c1c1e;
-            margin-top: 5px;
-        }
-        .social-icons { display: flex; justify-content: center; gap: 18px; margin-bottom: 10px; }
-        
-        .icon-circle { 
-            width: 40px; 
-            height: 40px; 
-            background: #111; 
-            border-radius: 50%; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            color: #fff; 
-            text-decoration: none; 
-            font-size: 1.1rem;
-            border: 1px solid #1c1c1e;
-        }
-        .footer-text { color: #3a3a3c; font-size: 0.55rem; font-weight: 700; letter-spacing: 1px; }
+        footer { padding: 15px 0 30px; text-align: center; border-top: 1px solid #1c1c1e; margin-top: auto; }
+        .social-icons { display: flex; justify-content: center; gap: 18px; margin-bottom: 12px; }
+        .icon-circle { width: 42px; height: 42px; background: #111; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #fff; text-decoration: none; border: 1px solid #1c1c1e; font-size: 1.1rem; }
+        .footer-text { color: #3a3a3c; font-size: 0.55rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; }
 
-        /* --- SLIDE-UP MENU (3 DOT) --- */
-        .overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8); display: none; z-index: 100;
-        }
-        .side-menu {
-            position: fixed; bottom: -100%; left: 50%; transform: translateX(-50%);
-            width: 100%; max-width: 430px; background: #111;
-            border-radius: 20px 20px 0 0; padding: 20px;
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 101;
-            border: 1px solid #1c1c1e; border-bottom: none;
-        }
+        /* Menu Styles Same as before... */
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; z-index: 100; }
+        .side-menu { position: fixed; bottom: -100%; left: 50%; transform: translateX(-50%); width: 100%; max-width: 430px; background: #0d0d0d; border-radius: 25px 25px 0 0; padding: 25px 20px; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 101; border: 1px solid #1c1c1e; }
         .side-menu.active { bottom: 0; }
-        .menu-handle { width: 35px; height: 4px; background: #3a3a3c; border-radius: 10px; margin: 0 auto 20px; }
-        
-        .menu-item {
-            display: flex; align-items: center; gap: 15px; color: #fff;
-            text-decoration: none; padding: 14px; border-radius: 12px;
-            margin-bottom: 8px; background: #1c1c1e; font-weight: 600; font-size: 0.9rem;
-        }
+        .menu-handle { width: 40px; height: 5px; background: #333; border-radius: 10px; margin: 0 auto 20px; }
+        .menu-item { display: flex; align-items: center; gap: 15px; color: #fff; text-decoration: none; padding: 15px; border-radius: 15px; margin-bottom: 10px; background: #161616; font-weight: 600; }
         .menu-item i { color: #0a84ff; width: 20px; text-align: center; }
-        .close-menu { text-align: center; color: #8e8e93; margin-top: 10px; cursor: pointer; font-size: 0.8rem; padding: 10px; }
     </style>
 </head>
 <body>
     <div class="container">
-        
         <div class="content-wrap">
             <div class="header-nav">
                 <h1>ZyroX Mods</h1>
                 <div class="menu-btn" onclick="toggleMenu()"><i class="fas fa-ellipsis-v"></i></div>
             </div>
-            
             <div class="search-box">
                 <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" placeholder="Search mods..." onkeyup="filterApps()">
+                <input type="text" id="searchInput" placeholder="Search for mods..." onkeyup="filterApps()">
             </div>
-
             <div class="app-list" id="appList">
-                <a href="details.html?n=Frag Pro Shooter&v=4.1.0&img=frag1.png&vid=dQw4w9WgXcQ" class="app-card">
-                    <div class="thumb"><img src="frag1.png"></div>
-                    <div class="info">
-                        <h3 class="app-name">Frag Pro Shooter</h3>
-                        <p>Version 4.1.0 • Action • ZyroX Mod</p>
-                    </div>
-                </a>
-
-                <a href="details.html?n=Free Fire Max&v=1.10.2&img=ff_banner.png&vid=yT_Video_ID" class="app-card">
-        <div class="thumb"><img src="ff_banner.png"></div>
-        <div class="info">
-            <h3 class="app-name">Free Fire Max Mod</h3>
-            <p>Version 1.10.2 • Battle Royale • ESP Menu</p>
-        </div>
-    </a>
-            </div>
-                
-                
+                </div>
         </div>
 
         <footer>
@@ -133,23 +72,44 @@
                 <a href="#" class="icon-circle"><i class="fab fa-youtube"></i></a>
                 <a href="#" class="icon-circle"><i class="fab fa-telegram-plane"></i></a>
             </div>
-            <div class="footer-text">© 2026 ZYROX MODS</div>
+            <div class="footer-text">© 2026 ZYROX MODS • PREMIUM</div>
         </footer>
-
     </div>
 
     <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
     <div class="side-menu" id="sideMenu">
         <div class="menu-handle"></div>
-        <a href="#" class="menu-item"><i class="fas fa-user-edit"></i> About Developer</a>
-        <a href="#" class="menu-item"><i class="fas fa-paper-plane"></i> Join Telegram</a>
-        <a href="#" class="menu-item"><i class="fas fa-bug"></i> Report Issues</a>
-        <a href="#" class="menu-item"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
-        <div class="close-menu" onclick="toggleMenu()">Dismiss</div>
+        <a href="#" class="menu-item"><i class="fas fa-user-shield"></i> About Developer</a>
+        <a href="#" class="menu-item"><i class="fab fa-telegram"></i> Join Channel</a>
+        <a href="#" class="menu-item"><i class="fas fa-bug"></i> Report Bug</a>
+        <div onclick="toggleMenu()" style="text-align: center; color: #555; font-size: 0.8rem; margin-top: 10px; cursor: pointer;">Close</div>
     </div>
 
     <script>
-        // Search Filter
+        // --- 1. MODS DATA (Add new cards here easily) ---
+        const mods = [
+            { name: "Frag Pro Shooter", version: "4.1.0", type: "Action", img: "frag1.png", vid: "dQw4w9WgXcQ" },
+            { name: "Free Fire Max", version: "1.10.2", type: "Battle Royale", img: "ff_banner.png", vid: "yT_Video_ID" },
+            { name: "Subway Surfers", version: "3.2.1", type: "Arcade", img: "subway.png", vid: "another_vid" }
+        ];
+
+        // --- 2. FUNCTION TO LOAD CARDS ---
+        function loadMods() {
+            const list = document.getElementById('appList');
+            list.innerHTML = mods.map(mod => `
+                <a href="details.html?n=${encodeURIComponent(mod.name)}&v=${mod.version}&img=${mod.img}&vid=${mod.vid}" class="app-card">
+                    <div class="thumb"><img src="${mod.img}" onerror="this.src='https://via.placeholder.com/400x225/111/0a84ff?text=No+Image'"></div>
+                    <div class="info">
+                        <h3 class="app-name">${mod.name}</h3>
+                        <p>Version ${mod.version} • ${mod.type} • ZyroX Mod</p>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        // Run load function on startup
+        loadMods();
+
         function filterApps() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.getElementsByClassName('app-card');
@@ -159,7 +119,6 @@
             }
         }
 
-        // Slide Menu Toggle
         function toggleMenu() {
             const menu = document.getElementById('sideMenu');
             const overlay = document.getElementById('overlay');
