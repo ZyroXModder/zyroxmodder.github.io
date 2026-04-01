@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZyroX Mods | Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        body { 
+            background-color: #000000; 
+            color: #ffffff; 
+            display: flex; 
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container { width: 100%; max-width: 430px; }
+
+        /* --- NAV (X on Right) --- */
+        .nav-bar { 
+            padding: 15px 20px; 
+            display: flex; 
+            justify-content: flex-end; 
+        }
+        .exit-btn { color: #0a84ff; text-decoration: none; font-size: 1.4rem; }
+
+        /* --- HEADER --- */
+        .app-header { padding: 0 20px 25px; display: flex; gap: 15px; }
+        .app-icon { width: 100px; height: 100px; border-radius: 22px; border: 1px solid #1c1c1e; object-fit: cover; }
+        .header-content { display: flex; flex-direction: column; justify-content: center; }
+        .app-name { font-size: 1.3rem; font-weight: 700; line-height: 1.1; margin-bottom: 2px; }
+        .version-text { color: #8e8e93; font-size: 0.8rem; font-weight: 500; }
+        
+        .action-row { margin-top: 10px; display: flex; align-items: center; gap: 12px; }
+        .get-btn { background: #0a84ff; color: #fff; text-decoration: none; padding: 5px 24px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; }
+        
+        .header-icon-circle { 
+            width: 32px; 
+            height: 32px; 
+            background: #181818; 
+            border-radius: 50%; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            color: #0a84ff; 
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+
+        /* --- SECTION TITLES --- */
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 20px 20px 12px;
+            letter-spacing: 0.5px;
+        }
+        .section-title::before {
+            content: '';
+            width: 3.5px;
+            height: 16px;
+            background: #0a84ff;
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+
+        .preview-container { padding: 0 20px 5px; }
+        .video-card { width: 100%; aspect-ratio: 16/9; background: #1c1c1e; border-radius: 18px; overflow: hidden; }
+
+        /* --- ACTION CARDS --- */
+        .cards-container { padding: 0 20px 25px; display: flex; flex-direction: column; gap: 10px; }
+        
+        .action-card {
+            background: #111111;
+            border: 1px solid #1c1c1e;
+            padding: 12px 18px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .icon-box {
+            width: 38px;
+            height: 38px;
+            background: #181818;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .card-text h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 1px; }
+        .card-text p { font-size: 0.7rem; color: #636366; line-height: 1.2; }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 10px 0 25px;
+            text-align: center;
+            border-top: 1px solid #1c1c1e;
+            margin-top: 5px;
+        }
+        .social-icons { display: flex; justify-content: center; gap: 18px; margin-bottom: 10px; }
+        
+        .icon-circle { 
+            width: 40px; 
+            height: 40px; 
+            background: #111; 
+            border-radius: 50%; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            color: #fff; 
+            text-decoration: none; 
+            font-size: 1.1rem;
+            border: 1px solid #1c1c1e;
+        }
+        .footer-text { color: #3a3a3c; font-size: 0.55rem; font-weight: 700; letter-spacing: 1px; }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="nav-bar">
+            <a href="home.html" class="exit-btn"><i class="fas fa-times"></i></a>
+        </div>
+
+        <div class="app-header">
+            <img id="icon" src="" alt="App Icon" class="app-icon">
+            <div class="header-content">
+                <h1 id="name" class="app-name">Loading...</h1>
+                <p id="version" class="version-text"></p>
+                <div class="action-row">
+                    <a href="#" class="get-btn">GET</a>
+                    <a href="#" class="header-icon-circle"><i class="fas fa-play"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Gameplay Preview</h2>
+        <div class="preview-container">
+            <div class="video-card">
+                <iframe id="video" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <h2 class="section-title">How To Use?</h2>
+        <div class="cards-container">
+            <a href="#" class="action-card">
+                <div class="icon-box" style="color: #0a84ff;"><i class="fas fa-cloud-download-alt"></i></div>
+                <div class="card-text">
+                    <h3>Download</h3>
+                    <p>Tap to get the latest APK file.</p>
+                </div>
+            </a>
+
+            <a href="#" class="action-card">
+                <div class="icon-box" style="color: #ffcc00;"><i class="fas fa-play"></i></div>
+                <div class="card-text">
+                    <h3>Tutorial</h3>
+                    <p>Watch for setup and installation guide.</p>
+                </div>
+            </a>
+
+            <a href="#" class="action-card">
+                <div class="icon-box" style="color: #34c759;"><i class="fas fa-bug"></i></div>
+                <div class="card-text">
+                    <h3>Report</h3>
+                    <p>Facing issues? Let us know.</p>
+                </div>
+            </a>
+        </div>
+
+        <footer>
+            <div class="social-icons">
+                <a href="#" class="icon-circle"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="icon-circle"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+            <div class="footer-text">© 2026 ZYROX MODS • PREMIUM</div>
+        </footer>
+    </div>
+
+    <script>
+        // Getting values from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        if(urlParams.has('n')) {
+            document.getElementById('name').innerText = urlParams.get('n');
+            document.getElementById('version').innerText = "Version " + urlParams.get('v');
+            document.getElementById('icon').src = urlParams.get('img');
+            
+            // Setting up YouTube Video
+            const vidId = urlParams.get('vid');
+            document.getElementById('video').src = "https://www.youtube.com/embed/" + vidId;
+            
+            // Update Page Title
+            document.title = urlParams.get('n') + " | ZyroX Mods";
+        }
+    </script>
+</body>
+</html>
