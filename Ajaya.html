@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <title>Ajaya Chettri | Modder & Developer</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+
+        *{
+            padding: 0;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+
+        body{
+            width: 100%;
+            min-height: 100vh;
+            background-color: #080808;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* --- Scroll Lock logic --- */
+        body.stop-scrolling {
+            overflow: hidden;
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1; 
+        }
+
+        nav{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 10%;
+            position: absolute;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo{ font-size: 1.5rem; font-weight: 800; color: white; }
+        .logo span{ color: #00ffd5; }
+        .hamburg{ font-size: 1.5rem; color: #00ffd5; cursor: pointer; z-index: 1100; }
+
+        /* --- Slim Sidebar (ZyroX Style) --- */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -260px; 
+            width: 230px; /* Thorai sano weight */
+            height: 100vh;
+            background: #0f0f0f;
+            z-index: 1000;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar.active { left: 0; }
+
+        .sidebar-header {
+            padding: 30px 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            margin-bottom: 10px;
+        }
+
+        .sidebar-header img {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            border: 1.5px solid #00ffd5;
+            object-fit: cover;
+        }
+
+        .header-info h4 { 
+            font-size: 1rem; 
+            color: white; 
+            font-weight: 600;
+        }
+        
+        .header-info p { 
+            font-size: 0.8rem; 
+            color: #999; 
+        }
+
+        .sidebar-links { 
+            display: flex; 
+            flex-direction: column; 
+            padding: 5px;
+        }
+
+        .sidebar-links a {
+            color: #eee;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: 0.2s;
+            border-radius: 8px;
+        }
+
+        .sidebar-links a i { 
+            font-size: 1.1rem; 
+            color: #00ffd5; 
+            width: 22px; 
+            text-align: center; 
+        }
+
+        .sidebar-links a:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #00ffd5;
+        }
+
+        /* --- Hero Section --- */
+        section{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 20px 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .image-box {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin-bottom: 50px;
+        }
+
+        .image-box::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            box-shadow: inset 0 0 50px #00ffd5, 0 0 50px #00ffd5;
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #00ffd5;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content {
+            max-width: 600px;
+            text-align: left;
+            width: 100%;
+            padding: 0 10%;
+        }
+
+        .content h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+
+        .content h1 span { color: #00ffd5; }
+
+        .content h3 {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 20px;
+            font-weight: 400;
+            min-height: 40px;
+        }
+
+        #typewriter::after {
+            content: "|";
+            margin-left: 5px;
+            color: #00ffd5;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .content p {
+            color: #b0b0b0;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .social-links a i {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #00ffd5;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #00ffd5;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+
+        .social-links a i:hover {
+            background: #00ffd5;
+            color: black;
+            box-shadow: 0 0 20px #00ffd5;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column; 
+            gap: 12px;
+            width: fit-content;
+        }
+
+        .btn-website, .btn-contact {
+            padding: 10px 30px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            text-align: center;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-website {
+            background: #00ffd5;
+            color: black;
+            box-shadow: 0 0 15px rgba(0, 255, 213, 0.4);
+        }
+
+        .btn-contact {
+            background: transparent;
+            color: white;
+            border: 1.5px solid #00ffd5;
+        }
+
+        .btn-website:hover { transform: scale(1.05); box-shadow: 0 0 30px #00ffd5; }
+        .btn-contact:hover { background: #00ffd5; color: black; }
+
+        @media (max-width: 768px) {
+            .content { padding: 0 5%; }
+            .image-box { width: 220px; height: 220px; }
+            section { padding-top: 150px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+
+    <nav>
+        <div class="logo">Ajaya <span>Chettri</span></div>
+        <div class="hamburg" id="menuBtn"><i class="fa-solid fa-bars-staggered"></i></div>
+    </nav>
+
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="main.png" alt="Profile">
+            <div class="header-info">
+                <h4>Ajaya Mods</h4>
+                <p>Premium Modder</p>
+            </div>
+        </div>
+        
+        <div class="sidebar-links">
+            <a href="#"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="#"><i class="fa-brands fa-telegram"></i> Telegram</a>
+            <a href="#"><i class="fa-brands fa-youtube"></i> YouTube</a>
+            <a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a>
+            <a href="#"><i class="fa-solid fa-share-nodes"></i> Share App</a>
+        </div>
+    </div>
+
+    <section>
+        <div class="image-box" data-aos="zoom-in" data-aos-duration="1500">
+            <img src="main.png" alt="Ajaya Chettri">
+        </div>
+
+        <div class="content">
+            <h1 data-aos="fade-right">Hi, It's <span>Ajaya</span></h1>
+            <h3 data-aos="fade-right" data-aos-delay="200">
+                I'm a <span id="typewriter" style="color: #00ffd5; font-weight: 600;"></span>
+            </h3>
+            
+            <p data-aos="fade-up" data-aos-delay="400">
+                I am Ajaya Chettri, a professional modder and developer. I specialize in <b>Advanced Modding</b>, <b>Mod Menu Development</b>, and creating seamless user interfaces for a unique gaming experience.
+            </p>
+
+            <div class="social-links" data-aos="fade-up" data-aos-delay="600">
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+
+            <div class="btn-group" data-aos="flip-up" data-aos-delay="800">
+                <a href="#" class="btn-website"><i class="fa-solid fa-globe"></i> Website</a>
+                <a href="#" class="btn-contact"><i class="fa-solid fa-paper-plane"></i> Contact</a>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({ offset: 100, duration: 1000, once: true });
+
+      // Sidebar Toggle Logic
+      const menuBtn = document.getElementById('menuBtn');
+      const sidebar = document.getElementById('sidebar');
+      const body = document.body;
+      
+      menuBtn.onclick = (e) => {
+          e.stopPropagation();
+          sidebar.classList.toggle('active');
+          body.classList.toggle('stop-scrolling');
+          const icon = menuBtn.querySelector('i');
+          icon.classList.toggle('fa-bars-staggered');
+          icon.classList.toggle('fa-xmark');
+      }
+
+      // Close sidebar when clicking outside
+      document.onclick = (e) => {
+          if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+              if(sidebar.classList.contains('active')) {
+                  sidebar.classList.remove('active');
+                  body.classList.remove('stop-scrolling');
+                  menuBtn.querySelector('i').classList.add('fa-bars-staggered');
+                  menuBtn.querySelector('i').classList.remove('fa-xmark');
+              }
+          }
+      }
+
+      // Typewriter Effect
+      const textElement = document.getElementById("typewriter");
+      const roles = ["Modder", "Mod Menu Developer", "Software Modder"];
+      let roleIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+
+      function typeEffect() {
+        const currentRole = roles[roleIndex];
+        if (isDeleting) {
+          textElement.innerHTML = currentRole.substring(0, charIndex - 1);
+          charIndex--;
+        } else {
+          textElement.innerHTML = currentRole.substring(0, charIndex + 1);
+          charIndex++;
+        }
+        let typeSpeed = isDeleting ? 80 : 150;
+        if (!isDeleting && charIndex === currentRole.length) {
+          isDeleting = true;
+          typeSpeed = 2000;
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          roleIndex = (roleIndex + 1) % roles.length;
+          typeSpeed = 500;
+        }
+        setTimeout(typeEffect, typeSpeed);
+      }
+
+      // Initialize Particles.js
+      particlesJS("particles-js", {
+        "particles": {
+          "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+          "color": { "value": "#00ffd5" },
+          "shape": { "type": "circle" },
+          "opacity": { "value": 0.3, "random": false },
+          "size": { "value": 3, "random": true },
+          "line_linked": { "enable": true, "distance": 150, "color": "#00ffd5", "opacity": 0.2, "width": 1 },
+          "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+        },
+        "interactivity": {
+          "detect_on": "canvas",
+          "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }
+        },
+        "retina_detect": true
+      });
+      
+      window.onload = () => { setTimeout(typeEffect, 1200); };
+    </script>
+</body>
+</html>
