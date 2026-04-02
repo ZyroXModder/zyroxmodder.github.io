@@ -13,42 +13,58 @@
         body { background-color: #000000; color: #ffffff; display: flex; justify-content: center; min-height: 100vh; }
         .container { width: 100%; max-width: 430px; }
 
-        /* --- NAV (X on Right) --- */
+        /* --- NAV --- */
         .nav-bar { padding: 15px 20px; display: flex; justify-content: flex-end; }
         .exit-btn { color: #0a84ff; text-decoration: none; font-size: 1.4rem; cursor: pointer; }
 
-        /* --- HEADER --- */
-        .app-header { padding: 0 20px 25px; display: flex; gap: 15px; }
-        .app-icon { width: 100px; height: 100px; border-radius: 22px; border: 1px solid #1c1c1e; object-fit: cover; background: #111; }
-        .header-content { display: flex; flex-direction: column; justify-content: center; }
-        .app-name { font-size: 1.3rem; font-weight: 700; line-height: 1.1; margin-bottom: 2px; }
-        .version-text { color: #8e8e93; font-size: 0.8rem; font-weight: 500; }
+        /* --- HEADER & MOD BADGE --- */
+        .app-header { padding: 0 20px 25px; display: flex; gap: 20px; align-items: center; }
         
-        .action-row { margin-top: 10px; display: flex; align-items: center; gap: 12px; }
+        .icon-wrapper { position: relative; display: inline-block; flex-shrink: 0; }
+        .app-icon { width: 100px; height: 100px; border-radius: 22px; border: 1px solid #1c1c1e; object-fit: cover; background: #111; }
+        
+        .mod-badge {
+            position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%);
+            background: #007aff; color: #fff; font-size: 0.65rem; font-weight: 900;
+            padding: 3px 14px; border-radius: 20px; text-transform: uppercase;
+            border: 2px solid #000; white-space: nowrap; box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .header-content { display: flex; flex-direction: column; justify-content: center; }
+        .app-name { font-size: 1.3rem; font-weight: 700; line-height: 1.1; margin-bottom: 5px; }
+        
+        /* Version & Category Row */
+        .meta-row { display: flex; align-items: center; gap: 15px; color: #8e8e93; font-size: 0.75rem; font-weight: 500; margin-bottom: 12px; }
+        .meta-item { display: flex; align-items: center; gap: 5px; }
+        .meta-row i { color: #0a84ff; font-size: 0.8rem; }
+
+        .action-row { display: flex; align-items: center; gap: 12px; }
         .get-btn { background: #0a84ff; color: #fff; text-decoration: none; padding: 6px 28px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; transition: 0.2s; }
         .get-btn:active { transform: scale(0.95); background: #007aff; }
         
         .header-icon-circle { width: 32px; height: 32px; background: #181818; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #0a84ff; font-size: 0.8rem; text-decoration: none; }
 
-        /* --- SECTION TITLES --- */
-        .section-title { display: flex; align-items: center; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; padding: 20px 20px 12px; letter-spacing: 0.5px; }
+        /* --- SECTIONS --- */
+        .section-title { display: flex; align-items: center; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; padding: 25px 20px 12px; letter-spacing: 0.5px; }
         .section-title::before { content: ''; width: 3.5px; height: 16px; background: #0a84ff; margin-right: 10px; border-radius: 2px; }
+.separator {
+    border: none;
+    height: 1px;
+    background-color: #1c1c1e; /* iOS dark mode border color */
+    margin: 0 20px; /* Side ma thau xodeko */
+}
 
         .preview-container { padding: 0 20px 5px; }
         .video-card { width: 100%; aspect-ratio: 16/9; background: #111; border-radius: 18px; overflow: hidden; border: 1px solid #1c1c1e; }
 
-        /* --- ACTION CARDS --- */
         .cards-container { padding: 0 20px 25px; display: flex; flex-direction: column; gap: 10px; }
         .action-card { background: #111111; border: 1px solid #1c1c1e; padding: 12px 18px; border-radius: 18px; display: flex; align-items: center; gap: 15px; text-decoration: none; color: #fff; transition: 0.2s; }
-        .action-card:active { background: #1a1a1a; transform: scale(0.98); }
 
         .icon-box { width: 38px; height: 38px; background: #181818; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 0.9rem; flex-shrink: 0; }
         .card-text h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 1px; }
         .card-text p { font-size: 0.7rem; color: #636366; line-height: 1.2; }
 
         footer { padding: 20px 0 30px; text-align: center; border-top: 1px solid #1c1c1e; margin-top: 10px; }
-        .social-icons { display: flex; justify-content: center; gap: 18px; margin-bottom: 12px; }
-        .icon-circle { width: 42px; height: 42px; background: #111; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #fff; text-decoration: none; border: 1px solid #1c1c1e; }
         .footer-text { color: #3a3a3c; font-size: 0.55rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; }
     </style>
 </head>
@@ -60,17 +76,29 @@
         </div>
 
         <div class="app-header">
-            <img id="icon" src="" alt="Icon" class="app-icon">
+            <div class="icon-wrapper">
+                <img id="icon" src="" alt="Icon" class="app-icon">
+                <div class="mod-badge">MOD</div>
+            </div>
             <div class="header-content">
                 <h1 id="name" class="app-name">Loading...</h1>
-                <p id="version" class="version-text"></p>
+                
+                <div class="meta-row">
+                    <div class="meta-item">
+                        <i class="fas fa-code-branch"></i> <span id="version">v1.0</span>
+                    </div>
+                    <div class="meta-item">
+                        <i id="catIcon" class="fas fa-gamepad"></i> <span id="category">Games</span>
+                    </div>
+                </div>
+
                 <div class="action-row">
                     <a href="#" id="mainDownloadBtn" class="get-btn">GET</a>
                     <a href="#videoSection" class="header-icon-circle"><i class="fas fa-play"></i></a>
                 </div>
             </div>
         </div>
-
+<hr class="separator">
         <h2 class="section-title" id="videoSection">Gameplay Preview</h2>
         <div class="preview-container">
             <div class="video-card">
@@ -78,7 +106,7 @@
             </div>
         </div>
 
-        <h2 class="section-title">How To Use</h2>
+        <h2 class="section-title">How To Use?</h2>
         <div class="cards-container">
             <a href="#" id="cardDownloadBtn" class="action-card">
                 <div class="icon-box" style="color: #0a84ff;"><i class="fas fa-cloud-download-alt"></i></div>
@@ -87,7 +115,6 @@
                     <p>Get the latest modded version safely.</p>
                 </div>
             </a>
-
             <a href="#" class="action-card">
                 <div class="icon-box" style="color: #ffcc00;"><i class="fas fa-play"></i></div>
                 <div class="card-text">
@@ -95,7 +122,6 @@
                     <p>Watch for setup and installation guide.</p>
                 </div>
             </a>
-
             <a href="#" class="action-card">
                 <div class="icon-box" style="color: #34c759;"><i class="fas fa-bug"></i></div>
                 <div class="card-text">
@@ -106,10 +132,6 @@
         </div>
 
         <footer>
-            <div class="social-icons">
-                <a href="#" class="icon-circle"><i class="fab fa-youtube"></i></a>
-                <a href="https://t.me/zyroxmods" class="icon-circle"><i class="fab fa-telegram-plane"></i></a>
-            </div>
             <div class="footer-text">© 2026 ZYROX MODS • PREMIUM</div>
         </footer>
     </div>
@@ -118,26 +140,29 @@
         const urlParams = new URLSearchParams(window.location.search);
         
         if(urlParams.has('n')) {
-            // 1. Basic Info Set
             document.getElementById('name').innerText = urlParams.get('n');
-            document.getElementById('version').innerText = "Version " + urlParams.get('v');
             document.getElementById('icon').src = urlParams.get('img');
             
-            // 2. YouTube Set
+            // Dynamic Meta Data
+            document.getElementById('version').innerText = "v" + (urlParams.get('v') || "1.0");
+            document.getElementById('category').innerText = urlParams.get('c') || "Games";
+            
+            // Icon Sync Logic
+            if(urlParams.has('ci')) {
+                document.getElementById('catIcon').className = "fas " + urlParams.get('ci');
+            }
+            
             const vidId = urlParams.get('vid');
             document.getElementById('video').src = "https://www.youtube.com/embed/" + vidId;
             
-            // 3. DOWNLOAD LINK SET (Important!)
             const downloadUrl = urlParams.get('dl');
             if(downloadUrl) {
                 document.getElementById('mainDownloadBtn').href = downloadUrl;
                 document.getElementById('cardDownloadBtn').href = downloadUrl;
             }
             
-            // 4. Page Title
             document.title = urlParams.get('n') + " | ZyroX Mods";
         } else {
-            // Link bigreko bela index ma firta pathaune
             window.location.href = "index.html";
         }
     </script>
