@@ -3,167 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZyroX Mods | Details</title>
+    <title>ZyroX Mods | Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
         
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        
-        body { background-color: #000000; color: #ffffff; display: flex; justify-content: center; min-height: 100vh; }
-        .container { width: 100%; max-width: 430px; }
+        body { background-color: #000000; color: #ffffff; display: flex; justify-content: center; min-height: 100vh; overflow-x: hidden; }
 
-        /* --- NAV --- */
-        .nav-bar { padding: 15px 20px; display: flex; justify-content: flex-end; }
-        .exit-btn { color: #0a84ff; text-decoration: none; font-size: 1.4rem; cursor: pointer; }
+        .container { width: 100%; max-width: 430px; padding: 15px; display: flex; flex-direction: column; min-height: 100vh; }
+        .content-wrap { flex: 1; }
 
-        /* --- HEADER & MOD BADGE --- */
-        .app-header { padding: 0 20px 25px; display: flex; gap: 20px; align-items: center; }
-        
-        .icon-wrapper { position: relative; display: inline-block; flex-shrink: 0; }
-        .app-icon { width: 100px; height: 100px; border-radius: 22px; border: 1px solid #1c1c1e; object-fit: cover; background: #111; }
-        
-        .mod-badge {
-            position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%);
-            background: #007aff; color: #fff; font-size: 0.65rem; font-weight: 900;
-            padding: 3px 14px; border-radius: 20px; text-transform: uppercase;
-            border: 2px solid #000; white-space: nowrap; box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        /* Header */
+        .header-nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 5px; margin-bottom: 15px; }
+        .header-nav h1 { font-size: 1.6rem; font-weight: 800; color: #0a84ff; letter-spacing: -0.5px; }
+        .menu-btn { font-size: 1.2rem; color: #fff; cursor: pointer; padding: 8px; }
+
+        /* Search */
+        .search-box { position: relative; margin-bottom: 25px; padding: 0 5px; }
+        .search-box i { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: #0a84ff; font-size: 0.85rem; }
+        .search-box input { 
+            width: 100%; background: #111; border: 1px solid #1c1c1e; 
+            padding: 12px 15px 12px 40px; border-radius: 14px; color: #fff; 
+            font-size: 0.9rem; outline: none; transition: 0.3s;
         }
+        .search-box input:focus { border-color: #0a84ff; background: #080808; }
 
-        .header-content { display: flex; flex-direction: column; justify-content: center; }
-        .app-name { font-size: 1.3rem; font-weight: 700; line-height: 1.1; margin-bottom: 5px; }
+        /* App Cards */
+        .app-list { display: flex; flex-direction: column; gap: 32px; padding-bottom: 30px; }
+        .app-card { text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 12px; transition: 0.2s; }
+        .app-card:active { transform: scale(0.97); }
+
+        .thumb { width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; border: 1px solid #1c1c1e; background: #0a0a0a; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        .thumb img { width: 100%; height: 100%; object-fit: cover; }
         
-        /* Version & Category Row */
-        .meta-row { display: flex; align-items: center; gap: 15px; color: #8e8e93; font-size: 0.75rem; font-weight: 500; margin-bottom: 12px; }
+        /* Info Section - Centered */
+        .info { padding: 0 5px; text-align: center; }
+        .info h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.3px; }
+        
+        /* Meta Icons Styling */
+        .meta-data { display: flex; justify-content: center; align-items: center; gap: 12px; font-size: 0.75rem; color: #8e8e93; font-weight: 600; }
         .meta-item { display: flex; align-items: center; gap: 5px; }
-        .meta-row i { color: #0a84ff; font-size: 0.8rem; }
+        .meta-item i { color: #0a84ff; font-size: 0.8rem; }
+        .dot { width: 3px; height: 3px; background: #3a3a3c; border-radius: 50%; }
 
-        .action-row { display: flex; align-items: center; gap: 12px; }
-        .get-btn { background: #0a84ff; color: #fff; text-decoration: none; padding: 6px 28px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; transition: 0.2s; }
-        .get-btn:active { transform: scale(0.95); background: #007aff; }
-        
-        .header-icon-circle { width: 32px; height: 32px; background: #181818; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #0a84ff; font-size: 0.8rem; text-decoration: none; }
-
-        /* --- SECTIONS --- */
-        .section-title { display: flex; align-items: center; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; padding: 25px 20px 12px; letter-spacing: 0.5px; }
-        .section-title::before { content: ''; width: 3.5px; height: 16px; background: #0a84ff; margin-right: 10px; border-radius: 2px; }
-.separator {
-    border: none;
-    height: 1px;
-    background-color: #1c1c1e; /* iOS dark mode border color */
-    margin: 0 20px; /* Side ma thau xodeko */
-}
-
-        .preview-container { padding: 0 20px 5px; }
-        .video-card { width: 100%; aspect-ratio: 16/9; background: #111; border-radius: 18px; overflow: hidden; border: 1px solid #1c1c1e; }
-
-        .cards-container { padding: 0 20px 25px; display: flex; flex-direction: column; gap: 10px; }
-        .action-card { background: #111111; border: 1px solid #1c1c1e; padding: 12px 18px; border-radius: 18px; display: flex; align-items: center; gap: 15px; text-decoration: none; color: #fff; transition: 0.2s; }
-
-        .icon-box { width: 38px; height: 38px; background: #181818; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 0.9rem; flex-shrink: 0; }
-        .card-text h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 1px; }
-        .card-text p { font-size: 0.7rem; color: #636366; line-height: 1.2; }
-
-        footer { padding: 20px 0 30px; text-align: center; border-top: 1px solid #1c1c1e; margin-top: 10px; }
+        footer { padding: 20px 0 30px; text-align: center; border-top: 1px solid #1c1c1e; margin-top: auto; }
+        .social-icons { display: flex; justify-content: center; gap: 18px; margin-bottom: 12px; }
+        .icon-circle { width: 42px; height: 42px; background: #111; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #fff; text-decoration: none; border: 1px solid #1c1c1e; font-size: 1.1rem; }
         .footer-text { color: #3a3a3c; font-size: 0.55rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; }
+
+        /* Side Menu Settings */
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; z-index: 100; }
+        .side-menu { position: fixed; bottom: -100%; left: 50%; transform: translateX(-50%); width: 100%; max-width: 430px; background: #0d0d0d; border-radius: 25px 25px 0 0; padding: 25px 20px; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 101; border: 1px solid #1c1c1e; }
+        .side-menu.active { bottom: 0; }
+        .menu-handle { width: 40px; height: 5px; background: #333; border-radius: 10px; margin: 0 auto 20px; }
+        .menu-item { display: flex; align-items: center; gap: 15px; color: #fff; text-decoration: none; padding: 15px; border-radius: 15px; margin-bottom: 10px; background: #161616; font-weight: 600; }
+        .menu-item i { color: #0a84ff; width: 20px; text-align: center; }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <div class="nav-bar">
-            <a href="index.html" class="exit-btn"><i class="fas fa-times"></i></a>
-        </div>
+        <div class="content-wrap">
+            <div class="header-nav">
+                <h1 style="cursor: pointer;" onclick="window.location.reload()">ZyroX Mods</h1>
 
-        <div class="app-header">
-            <div class="icon-wrapper">
-                <img id="icon" src="" alt="Icon" class="app-icon">
-                <div class="mod-badge">MOD</div>
+                <div class="menu-btn" onclick="toggleMenu()"><i class="fas fa-ellipsis-v"></i></div>
             </div>
-            <div class="header-content">
-                <h1 id="name" class="app-name">Loading...</h1>
-                
-                <div class="meta-row">
-                    <div class="meta-item">
-                        <i class="fas fa-code-branch"></i> <span id="version">v1.0</span>
-                    </div>
-                    <div class="meta-item">
-                        <i id="catIcon" class="fas fa-gamepad"></i> <span id="category">Games</span>
-                    </div>
-                </div>
+            
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search for mods..." onkeyup="filterApps()">
+            </div>
 
-                <div class="action-row">
-                    <a href="#" id="mainDownloadBtn" class="get-btn">GET</a>
-                    <a href="#videoSection" class="header-icon-circle"><i class="fas fa-play"></i></a>
+            <div class="app-list" id="appList">
                 </div>
-            </div>
-        </div>
-<hr class="separator">
-        <h2 class="section-title" id="videoSection">Gameplay Preview</h2>
-        <div class="preview-container">
-            <div class="video-card">
-                <iframe id="video" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-
-        <h2 class="section-title">How To Use?</h2>
-        <div class="cards-container">
-            <a href="#" id="cardDownloadBtn" class="action-card">
-                <div class="icon-box" style="color: #0a84ff;"><i class="fas fa-cloud-download-alt"></i></div>
-                <div class="card-text">
-                    <h3>Download APK</h3>
-                    <p>Get the latest modded version safely.</p>
-                </div>
-            </a>
-            <a href="#" class="action-card">
-                <div class="icon-box" style="color: #ffcc00;"><i class="fas fa-play"></i></div>
-                <div class="card-text">
-                    <h3>Tutorial</h3>
-                    <p>Watch for setup and installation guide.</p>
-                </div>
-            </a>
-            <a href="#" class="action-card">
-                <div class="icon-box" style="color: #34c759;"><i class="fas fa-bug"></i></div>
-                <div class="card-text">
-                    <h3>Report Bug</h3>
-                    <p>If the mod is not working, let us know.</p>
-                </div>
-            </a>
         </div>
 
         <footer>
+            <div class="social-icons">
+                <a href="#" class="icon-circle"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="icon-circle"><i class="fab fa-telegram-plane"></i></a>
+            </div>
             <div class="footer-text">© 2026 ZYROX MODS • PREMIUM</div>
         </footer>
     </div>
 
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+    <div class="side-menu" id="sideMenu">
+        <div class="menu-handle"></div>
+        <a href="#" class="menu-item"><i class="fas fa-user-shield"></i> About Developer</a>
+        <a href="#" class="menu-item"><i class="fab fa-telegram"></i> Join Channel</a>
+        <a href="#" class="menu-item"><i class="fas fa-bug"></i> Report Bug</a>
+        <div onclick="toggleMenu()" style="text-align: center; color: #555; font-size: 0.8rem; margin-top: 10px; cursor: pointer;">Close</div>
+    </div>
+
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        
-        if(urlParams.has('n')) {
-            document.getElementById('name').innerText = urlParams.get('n');
-            document.getElementById('icon').src = urlParams.get('img');
-            
-            // Dynamic Meta Data
-            document.getElementById('version').innerText = "v" + (urlParams.get('v') || "1.0");
-            document.getElementById('category').innerText = urlParams.get('c') || "Games";
-            
-            // Icon Sync Logic
-            if(urlParams.has('ci')) {
-                document.getElementById('catIcon').className = "fas " + urlParams.get('ci');
+        // Updated Data: Added icons for version and category
+        const mods = [
+            { 
+                name: "Frag Pro Shooter", 
+                version: "4.1.0", 
+                type: "Action", 
+                c_icon: "fa-gun", 
+                v_icon: "fa-code-branch",
+                img: "frag1.png", 
+                vid: "sAHVEONfshM", 
+                link: "https://your-download-link.com" 
+            },
+            { 
+                name: "Free Fire Max", 
+                version: "1.10.2", 
+                type: "Battle Royale", 
+                c_icon: "fa-shield-halved", 
+                v_icon: "fa-code-branch",
+                img: "ff_banner.png", 
+                vid: "yT_Video_ID", 
+                link: "https://your-download-link.com" 
+            },
+            { 
+                name: "Subway Surfers", 
+                version: "3.2.1", 
+                type: "Arcade", 
+                c_icon: "fa-gamepad", 
+                v_icon: "fa-code-branch",
+                img: "subway.png", 
+                vid: "another_vid", 
+                link: "https://your-download-link.com" 
             }
-            
-            const vidId = urlParams.get('vid');
-            document.getElementById('video').src = "https://www.youtube.com/embed/" + vidId;
-            
-            const downloadUrl = urlParams.get('dl');
-            if(downloadUrl) {
-                document.getElementById('mainDownloadBtn').href = downloadUrl;
-                document.getElementById('cardDownloadBtn').href = downloadUrl;
+        ];
+
+        function loadMods() {
+    const list = document.getElementById('appList');
+    list.innerHTML = mods.map(mod => `
+        <a href="details.html?n=${encodeURIComponent(mod.name)}&v=${mod.version}&img=${mod.img}&vid=${mod.vid}&dl=${encodeURIComponent(mod.link)}&c=${encodeURIComponent(mod.type)}&ci=${mod.c_icon}" class="app-card">
+            <div class="thumb">
+                <img src="${mod.img}" onerror="this.src='https://via.placeholder.com/400x225/111/0a84ff?text=${mod.name}'">
+            </div>
+            <div class="info">
+                <h3 class="app-name">${mod.name}</h3>
+                <div class="meta-data">
+                    <div class="meta-item">
+                        <i class="fas ${mod.v_icon}"></i> v${mod.version}
+                    </div>
+                    <div class="dot"></div>
+                    <div class="meta-item">
+                        <i class="fas ${mod.c_icon}"></i> ${mod.type}
+                    </div>
+                </div>
+            </div>
+        </a>
+    `).join('');
+}
+
+        loadMods();
+
+        function filterApps() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('app-card');
+            for (let i = 0; i < cards.length; i++) {
+                let name = cards[i].querySelector('.app-name').innerText.toLowerCase();
+                cards[i].style.display = name.includes(input) ? "flex" : "none";
             }
-            
-            document.title = urlParams.get('n') + " | ZyroX Mods";
-        } else {
-            window.location.href = "index.html";
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById('sideMenu');
+            const overlay = document.getElementById('overlay');
+            const isActive = menu.classList.toggle('active');
+            overlay.style.display = isActive ? 'block' : 'none';
         }
     </script>
 </body>
