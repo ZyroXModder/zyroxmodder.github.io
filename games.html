@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZyroX Mods | Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        body { background-color: #000000; color: #ffffff; display: flex; justify-content: center; min-height: 100vh; }
+        .container { width: 100%; max-width: 430px; }
+
+        /* --- NAV --- */
+        .nav-bar { padding: 15px 20px; display: flex; justify-content: flex-end; }
+        .exit-btn { color: #0a84ff; text-decoration: none; font-size: 1.4rem; cursor: pointer; }
+
+        /* --- HEADER & MOD BADGE --- */
+        .app-header { padding: 0 20px 25px; display: flex; gap: 20px; align-items: center; }
+        
+        .icon-wrapper { position: relative; display: inline-block; flex-shrink: 0; }
+        .app-icon { width: 100px; height: 100px; border-radius: 22px; border: 1px solid #1c1c1e; object-fit: cover; background: #111; }
+        
+        .mod-badge {
+            position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%);
+            background: #007aff; color: #fff; font-size: 0.65rem; font-weight: 900;
+            padding: 3px 14px; border-radius: 20px; text-transform: uppercase;
+            border: 2px solid #000; white-space: nowrap; box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .header-content { display: flex; flex-direction: column; justify-content: center; }
+        .app-name { font-size: 1.3rem; font-weight: 700; line-height: 1.1; margin-bottom: 5px; }
+        
+        /* Version & Category Row */
+        .meta-row { display: flex; align-items: center; gap: 15px; color: #8e8e93; font-size: 0.75rem; font-weight: 500; margin-bottom: 12px; }
+        .meta-item { display: flex; align-items: center; gap: 5px; }
+        .meta-row i { color: #0a84ff; font-size: 0.8rem; }
+
+        .action-row { display: flex; align-items: center; gap: 12px; }
+        .get-btn { background: #0a84ff; color: #fff; text-decoration: none; padding: 6px 28px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; transition: 0.2s; }
+        .get-btn:active { transform: scale(0.95); background: #007aff; }
+        
+        .header-icon-circle { width: 32px; height: 32px; background: #181818; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #0a84ff; font-size: 0.8rem; text-decoration: none; }
+
+        /* --- SECTIONS --- */
+        .section-title { display: flex; align-items: center; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; padding: 25px 20px 12px; letter-spacing: 0.5px; }
+        .section-title::before { content: ''; width: 3.5px; height: 16px; background: #0a84ff; margin-right: 10px; border-radius: 2px; }
+.separator {
+    border: none;
+    height: 1px;
+    background-color: #1c1c1e; /* iOS dark mode border color */
+    margin: 0 20px; /* Side ma thau xodeko */
+}
+
+        .preview-container { padding: 0 20px 5px; }
+        .video-card { width: 100%; aspect-ratio: 16/9; background: #111; border-radius: 18px; overflow: hidden; border: 1px solid #1c1c1e; }
+
+        .cards-container { padding: 0 20px 25px; display: flex; flex-direction: column; gap: 10px; }
+        .action-card { background: #111111; border: 1px solid #1c1c1e; padding: 12px 18px; border-radius: 18px; display: flex; align-items: center; gap: 15px; text-decoration: none; color: #fff; transition: 0.2s; }
+
+        .icon-box { width: 38px; height: 38px; background: #181818; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 0.9rem; flex-shrink: 0; }
+        .card-text h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 1px; }
+        .card-text p { font-size: 0.7rem; color: #636366; line-height: 1.2; }
+
+        footer { padding: 20px 0 30px; text-align: center; border-top: 1px solid #1c1c1e; margin-top: 10px; }
+        .footer-text { color: #3a3a3c; font-size: 0.55rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="nav-bar">
+            <a href="index.html" class="exit-btn"><i class="fas fa-times"></i></a>
+        </div>
+
+        <div class="app-header">
+            <div class="icon-wrapper">
+                <img id="icon" src="" alt="Icon" class="app-icon">
+                <div class="mod-badge">MOD</div>
+            </div>
+            <div class="header-content">
+                <h1 id="name" class="app-name">Loading...</h1>
+                
+                <div class="meta-row">
+                    <div class="meta-item">
+                        <i class="fas fa-code-branch"></i> <span id="version">v1.0</span>
+                    </div>
+                    <div class="meta-item">
+                        <i id="catIcon" class="fas fa-gamepad"></i> <span id="category">Games</span>
+                    </div>
+                </div>
+
+                <div class="action-row">
+                    <a href="#" id="mainDownloadBtn" class="get-btn">GET</a>
+                    <a href="#videoSection" class="header-icon-circle"><i class="fas fa-play"></i></a>
+                </div>
+            </div>
+        </div>
+<hr class="separator">
+        <h2 class="section-title" id="videoSection">Gameplay Preview</h2>
+        <div class="preview-container">
+            <div class="video-card">
+                <iframe id="video" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <h2 class="section-title">How To Use?</h2>
+        <div class="cards-container">
+            <a href="#" id="cardDownloadBtn" class="action-card">
+                <div class="icon-box" style="color: #0a84ff;"><i class="fas fa-cloud-download-alt"></i></div>
+                <div class="card-text">
+                    <h3>Download APK</h3>
+                    <p>Get the latest modded version safely.</p>
+                </div>
+            </a>
+            <a href="#" class="action-card">
+                <div class="icon-box" style="color: #ffcc00;"><i class="fas fa-play"></i></div>
+                <div class="card-text">
+                    <h3>Tutorial</h3>
+                    <p>Watch for setup and installation guide.</p>
+                </div>
+            </a>
+            <a href="https://t.me/ZyroXModder" class="action-card">
+                <div class="icon-box" style="color: #34c759;"><i class="fas fa-bug"></i></div>
+                <div class="card-text">
+                    <h3>Report Bug</h3>
+                    <p>If the mod is not working, let us know.</p>
+                </div>
+            </a>
+        </div>
+
+        <footer>
+            <div class="footer-text">© 2026 ZYROX MODS • PREMIUM</div>
+        </footer>
+    </div>
+    
+<script>
+    // यो तपाईंको डेटाबेस हो
+    const gameData = {
+        "frag": {
+            name: "Frag Pro Shooter",
+            version: "4.19.2",
+            type: "Action",
+            c_icon: "fa-gun",
+            img: "fragd.png",
+            vid: "sAHVEONfshM",
+            dl: "https://sub4unlock.io/AlIRx"
+        },
+        "subway": {
+            name: "Subway Surfers",
+            version: "3.2.1",
+            type: "Arcade",
+            c_icon: "fa-gamepad",
+            img: "subwayd.png",
+            vid: "another_vid",
+            dl: "https://bitly.com/yourlink"
+        }
+    };
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id'); // URL बाट 'id' लिने
+    const game = gameData[id]; // डेटाबेसबाट त्यो ID को गेम खोज्ने
+
+    if(game) {
+        document.getElementById('name').innerText = game.name;
+        document.getElementById('icon').src = game.img;
+        document.getElementById('version').innerText = "v" + game.version;
+        document.getElementById('category').innerText = game.type;
+        document.getElementById('catIcon').className = "fas " + game.c_icon;
+        document.getElementById('video').src = "https://www.youtube.com/embed/" + game.vid;
+        
+        document.getElementById('mainDownloadBtn').href = game.dl;
+        document.getElementById('cardDownloadBtn').href = game.dl;
+        
+        document.title = game.name + " | ZyroX Mods";
+    } else {
+        // यदि गलत ID भयो भने होमपेजमा पठाउने
+        window.location.href = "index.html";
+    }
+</script>
+</body>
+</html>
