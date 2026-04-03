@@ -135,36 +135,50 @@
             <div class="footer-text">© 2026 ZYROX MODS • PREMIUM</div>
         </footer>
     </div>
-
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        
-        if(urlParams.has('n')) {
-            document.getElementById('name').innerText = urlParams.get('n');
-            document.getElementById('icon').src = urlParams.get('img');
-            
-            // Dynamic Meta Data
-            document.getElementById('version').innerText = "v" + (urlParams.get('v') || "1.0");
-            document.getElementById('category').innerText = urlParams.get('c') || "Games";
-            
-            // Icon Sync Logic
-            if(urlParams.has('ci')) {
-                document.getElementById('catIcon').className = "fas " + urlParams.get('ci');
-            }
-            
-            const vidId = urlParams.get('vid');
-            document.getElementById('video').src = "https://www.youtube.com/embed/" + vidId;
-            
-            const downloadUrl = urlParams.get('dl');
-            if(downloadUrl) {
-                document.getElementById('mainDownloadBtn').href = downloadUrl;
-                document.getElementById('cardDownloadBtn').href = downloadUrl;
-            }
-            
-            document.title = urlParams.get('n') + " | ZyroX Mods";
-        } else {
-            window.location.href = "index.html";
+    
+<script>
+    // यो तपाईंको डेटाबेस हो
+    const gameData = {
+        "frag": {
+            name: "Frag Pro Shooter",
+            version: "4.19.2",
+            type: "Action",
+            c_icon: "fa-gun",
+            img: "frag.png",
+            vid: "sAHVEONfshM",
+            dl: "https://sub4unlock.io/AlIRx"
+        },
+        "subway": {
+            name: "Subway Surfers",
+            version: "3.2.1",
+            type: "Arcade",
+            c_icon: "fa-gamepad",
+            img: "subway.png",
+            vid: "another_vid",
+            dl: "https://bitly.com/yourlink"
         }
-    </script>
+    };
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id'); // URL बाट 'id' लिने
+    const game = gameData[id]; // डेटाबेसबाट त्यो ID को गेम खोज्ने
+
+    if(game) {
+        document.getElementById('name').innerText = game.name;
+        document.getElementById('icon').src = game.img;
+        document.getElementById('version').innerText = "v" + game.version;
+        document.getElementById('category').innerText = game.type;
+        document.getElementById('catIcon').className = "fas " + game.c_icon;
+        document.getElementById('video').src = "https://www.youtube.com/embed/" + game.vid;
+        
+        document.getElementById('mainDownloadBtn').href = game.dl;
+        document.getElementById('cardDownloadBtn').href = game.dl;
+        
+        document.title = game.name + " | ZyroX Mods";
+    } else {
+        // यदि गलत ID भयो भने होमपेजमा पठाउने
+        window.location.href = "index.html";
+    }
+</script>
 </body>
 </html>
