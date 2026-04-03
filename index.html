@@ -125,25 +125,30 @@
 
         function loadMods() {
     const list = document.getElementById('appList');
-    list.innerHTML = mods.map(mod => `
-        <a href="details.html?n=${encodeURIComponent(mod.name)}&v=${mod.version}&img=${mod.img}&vid=${mod.vid}&dl=${encodeURIComponent(mod.link)}&c=${encodeURIComponent(mod.type)}&ci=${mod.c_icon}" class="app-card">
-            <div class="thumb">
-                <img src="${mod.img}" onerror="this.src='https://via.placeholder.com/400x225/111/0a84ff?text=${mod.name}'">
-            </div>
-            <div class="info">
-                <h3 class="app-name">${mod.name}</h3>
-                <div class="meta-data">
-                    <div class="meta-item">
-                        <i class="fas ${mod.v_icon}"></i> v${mod.version}
-                    </div>
-                    <div class="dot"></div>
-                    <div class="meta-item">
-                        <i class="fas ${mod.c_icon}"></i> ${mod.type}
+    list.innerHTML = mods.map(mod => {
+        // नामलाई सानो अक्षर बनाउने र खाली ठाउँ हटाएर ID निकाल्ने (e.g. "Frag Pro Shooter" -> "frag")
+        const gameId = mod.name.toLowerCase().split(' ')[0]; 
+        
+        return `
+            <a href="details.html?id=${gameId}" class="app-card">
+                <div class="thumb">
+                    <img src="${mod.img}" onerror="this.src='https://via.placeholder.com/400x225/111/0a84ff?text=${mod.name}'">
+                </div>
+                <div class="info">
+                    <h3 class="app-name">${mod.name}</h3>
+                    <div class="meta-data">
+                        <div class="meta-item">
+                            <i class="fas ${mod.v_icon}"></i> v${mod.version}
+                        </div>
+                        <div class="dot"></div>
+                        <div class="meta-item">
+                            <i class="fas ${mod.c_icon}"></i> ${mod.type}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
-    `).join('');
+            </a>
+        `;
+    }).join('');
 }
 
         loadMods();
